@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_hello() {
 	fmt.Println("Hello World!")
 	fmt.Println("go" + "lang")
 	fmt.Println("17 + 37 =", 17+37)

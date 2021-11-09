@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func main_infer() {
 	var a = "initial"
 	fmt.Println(a)
 
