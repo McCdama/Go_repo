@@ -2,22 +2,22 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/McCdama/Go_repo/artes"
-	"github.com/McCdama/Go_repo/constant"
-	"github.com/McCdama/Go_repo/fory"
-	"github.com/McCdama/Go_repo/hello"
-	"github.com/McCdama/Go_repo/ify"
-	"github.com/McCdama/Go_repo/infer"
-	"github.com/McCdama/Go_repo/mulreturn"
-	"github.com/McCdama/Go_repo/slicey"
-	"github.com/McCdama/Go_repo/switchy"
-	ts "github.com/McCdama/Go_repo/typestruct"
+	"gorepo/artes"
+	"gorepo/constant"
+	"gorepo/fory"
+	"gorepo/hello"
+	"gorepo/ify"
+	"gorepo/infer"
+	"gorepo/mulreturn"
+	"gorepo/slicey"
+	"gorepo/switchy"
+	ts "gorepo/typestruct"
 )
 
 func main() {
 
 	artes.Main_array()
+
 	constant.Main_constant()
 	fory.Main_for()
 	hello.Main_hello()

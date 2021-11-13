@@ -1,3 +1,3 @@
-module github.com/McCdama/Go_repo
+module gorepo
 
 go 1.17
