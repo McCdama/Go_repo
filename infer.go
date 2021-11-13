@@ -1,4 +1,4 @@
-package main_infer
+package main
 
 import (
 	"fmt"

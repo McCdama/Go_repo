@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_array() {
 	var a [5]int
 	fmt.Println("Empty array: ", a)
 	fmt.Println("Array's length: ", len(a))

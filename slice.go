@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main_slice() {
 	/*
 	* Unlike arrays, slices are typed only by the elements they contain (not the number of elements).
 	* To create an empty slice with non-zero length, --> make

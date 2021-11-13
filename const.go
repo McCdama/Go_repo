@@ -1,4 +1,4 @@
-package main_const
+package main
 
 import (
 	"fmt"
