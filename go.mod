@@ -1,3 +1,3 @@
-module github.com/Go_repo
+module github.com/McCdama/Go_repo
 
 go 1.17
