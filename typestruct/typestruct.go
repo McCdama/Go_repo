@@ -13,7 +13,7 @@ type Bill struct {
 }
 
 // make a new Bill --> Like Constructor
-func ConBill(n string, i map[string]float64, t float64) Bill {
+func NewBill(n string, i map[string]float64, t float64) Bill {
 	b := Bill{
 		Name:  n,
 		Items: i,
@@ -22,7 +22,7 @@ func ConBill(n string, i map[string]float64, t float64) Bill {
 	return b
 }
 
-func (b Bill) Format() string {
+func (b *Bill) Format() string {
 	fs := "BILL INFORMATION: \n \n"
 	var total float64 = 0
 
@@ -30,7 +30,9 @@ func (b Bill) Format() string {
 		fs += fmt.Sprintf("%-25v ...$%v \n", k+":", v)
 		total += v
 	}
-	fs += fmt.Sprintf("%-25v ...$%0.2f", "\n total:", total)
+	fs += fmt.Sprintf("%-25v ...$%0.2f", "\ntip:", b.Tip)
+
+	fs += fmt.Sprintf("%-25v ...$%0.2f", "\ntotal:", total+b.Tip)
 	return fs
 }
 
@@ -39,8 +41,16 @@ func CreateBill() Bill {
 
 	name, _ := GetInput("Create a new bill name: ", reader)
 
-	b := ConBill(name, map[string]float64{}, 0)
+	b := NewBill(name, map[string]float64{}, 0)
 	fmt.Println("Created the bill", b.Name)
 
 	return b
+}
+
+func (b *Bill) UpdateTip(t float64) {
+	b.Tip = t
+}
+
+func (b *Bill) AddItem(n string, p float64) {
+	b.Items[n] = p
 }

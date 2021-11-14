@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -23,14 +24,31 @@ func PromptOpt(b Bill) {
 	switch opt {
 	case "a":
 		name, _ := GetInput("Item name: ", reader)
-		price, _ := GetInput("Item price: ", reader) // we got string from input!--> turn into float
-		fmt.Println(name, price)
+		price, _ := GetInput("Item price: ", reader)
 
+		// parsing string into float
+		p, err := strconv.ParseFloat(price, 64)
+		if err != nil {
+			fmt.Println("The price must be a number")
+			PromptOpt(b) // go back
+		}
+		b.AddItem(name, p)
+		fmt.Println("Item added - ", name, price)
+		PromptOpt(b) // add another item, tip, or save
 	case "s":
-		fmt.Println("you chose s")
+		fmt.Println("you chose to save the bill", b)
 	case "t":
 		tip, _ := GetInput("Tip amount ($): ", reader)
-		fmt.Println(tip)
+
+		t, err := strconv.ParseFloat(tip, 64)
+		if err != nil {
+			fmt.Println("The tip must be a number")
+			PromptOpt(b) // go back
+		}
+		b.UpdateTip(t)
+
+		fmt.Println("tip added - ", tip)
+		PromptOpt(b)
 
 	case "q":
 		break

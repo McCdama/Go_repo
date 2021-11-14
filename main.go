@@ -1,8 +1,6 @@
 package main
 
-import (
-	"gorepo/typestruct"
-)
+import ts "gorepo/typestruct"
 
 func main() {
 
@@ -16,9 +14,13 @@ func main() {
 	// slicey.Main_slice()
 	// switchy.Main_switch()
 
-	// billy := ts.ConBill("Bon_1", map[string]float64{"Chicken pot pie": 30.4, "Meatloaf": 12.8}, 1.55)
+	// billy := ts.NewBill("Bon_1", map[string]float64{"Chicken pot pie": 30.4, "Meatloaf": 12.8}, 1.55)
 	// fmt.Println(billy.Format()) // Receiver Function
 
-	mybill := typestruct.CreateBill()
-	typestruct.PromptOpt(mybill)
+	// recieverBill := ts.NewBill("Bon_1", map[string]float64{"Chicken pot pie": 70.1, "Meatloaf": 11.29}, 3.94)
+	// recieverBill.AddItem("Oninon Soup", 24.76)
+	// fmt.Println(recieverBill.Format())
+
+	mybill := ts.CreateBill()
+	ts.PromptOpt(mybill)
 }
