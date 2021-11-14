@@ -1,6 +1,10 @@
 package typestruct
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 type Bill struct {
 	Name  string
@@ -28,4 +32,15 @@ func (b Bill) Format() string {
 	}
 	fs += fmt.Sprintf("%-25v ...$%0.2f", "\n total:", total)
 	return fs
+}
+
+func CreateBill() Bill {
+	reader := bufio.NewReader(os.Stdin)
+
+	name, _ := GetInput("Create a new bill name: ", reader)
+
+	b := ConBill(name, map[string]float64{}, 0)
+	fmt.Println("Created the bill", b.Name)
+
+	return b
 }
