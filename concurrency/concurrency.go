@@ -28,7 +28,24 @@ func Run() {
 	// fire one goroutine per URL
 	for _, Url := range URLs {
 		go Get(ch, Url)
-		// result for each URL goes here ...
+
+		// get one result back for each of the URLs
+		var results []Result
+		for range URLs {
+			// receive a result from whichever of the pawned goroutines
+			// that's finished; blocks until any one finishes.
+			res := <-ch
+			results = append(results, res)
+		}
+
+		// print phase
+		for _, res := range results {
+			if res.Err != nil {
+				fmt.Println(res.Url, res.Elapsed, res.Status, res.Err)
+			} else {
+				fmt.Println(res.Url, res.Elapsed, res.Status, res.Size)
+			}
+		}
 	}
 }
 
