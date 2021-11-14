@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"sort"
 	"time"
 )
 
@@ -28,23 +29,33 @@ func Run() {
 	// fire one goroutine per URL
 	for _, Url := range URLs {
 		go Get(ch, Url)
+	}
+	// get one result back for each of the URLs
+	var results []Result
+	for range URLs {
+		// receive a result from whichever of the pawned goroutines
+		// that's finished; blocks until any one finishes.
+		res := <-ch
+		results = append(results, res)
+	}
 
-		// get one result back for each of the URLs
-		var results []Result
-		for range URLs {
-			// receive a result from whichever of the pawned goroutines
-			// that's finished; blocks until any one finishes.
-			res := <-ch
-			results = append(results, res)
+	// now, sort the results list from fastest to slowest
+	sort.Slice(results, func(i, j int) bool {
+		res1, res2 := results[i], results[j]
+		// if both errors are nil or non-nil, sort by elapsed
+		if (res1.Err == nil) == (res2.Err == nil) {
+			return results[i].Elapsed < results[j].Elapsed
 		}
+		// otherwise, we want the result without an error first
+		return res1.Err == nil
+	})
 
-		// print phase
-		for _, res := range results {
-			if res.Err != nil {
-				fmt.Println(res.Url, res.Elapsed, res.Status, res.Err)
-			} else {
-				fmt.Println(res.Url, res.Elapsed, res.Status, res.Size)
-			}
+	// print phase
+	for _, res := range results {
+		if res.Err != nil {
+			fmt.Println(res.Url, res.Elapsed, res.Status, res.Err)
+		} else {
+			fmt.Println(res.Url, res.Elapsed, res.Status, res.Size)
 		}
 	}
 }

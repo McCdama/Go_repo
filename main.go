@@ -1,10 +1,8 @@
 package main
 
-import (
-	"fmt"
-	i "gorepo/interf"
-	// import ts "gorepo/typestruct"
-)
+import con "gorepo/concurrency"
+
+// import ts "gorepo/typestruct"
 
 func main() {
 
@@ -28,15 +26,18 @@ func main() {
 	// mybill := ts.CreateBill()
 	// ts.PromptOpt(mybill)
 
-	shapes := []i.Shape{
-		i.Square{Length: 15.2},
-		i.Circle{Radius: 7.5},
-		i.Circle{Radius: 12.3},
-		i.Square{Length: 4.9},
-	}
+	/*
+		shapes := []i.Shape{
+			i.Square{Length: 15.2},
+			i.Circle{Radius: 7.5},
+			i.Circle{Radius: 12.3},
+			i.Square{Length: 4.9},
+		}
 
-	for _, v := range shapes {
-		i.PrintShapeInfo(v)
-		fmt.Println("---")
-	}
+		for _, v := range shapes {
+			i.PrintShapeInfo(v)
+			fmt.Println("---")
+		}
+	*/
+	con.Run()
 }
