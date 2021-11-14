@@ -2,6 +2,7 @@ package concurrency
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -27,6 +28,7 @@ func Run() {
 	// fire one goroutine per URL
 	for _, Url := range URLs {
 		go Get(ch, Url)
+		// result for each URL goes here ...
 	}
 }
 
@@ -49,4 +51,24 @@ func Get(ch chan Result, url string) {
 		}
 		return
 	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		ch <- Result{
+			Url:     url,
+			Elapsed: time.Since(start),
+			Err:     err,
+			Status:  resp.Status,
+		}
+		return
+	}
+
+	// send the result back to the main goroutine via the channel
+	ch <- Result{
+		Url:     url,
+		Elapsed: time.Since(start),
+		Status:  resp.Status,
+		Size:    len(body),
+	}
+
 }
