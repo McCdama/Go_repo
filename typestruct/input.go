@@ -36,7 +36,8 @@ func PromptOpt(b Bill) {
 		fmt.Println("Item added - ", name, price)
 		PromptOpt(b) // add another item, tip, or save
 	case "s":
-		fmt.Println("you chose to save the bill", b)
+		b.Save()
+		fmt.Println("you saved the file - ", b.Name)
 	case "t":
 		tip, _ := GetInput("Tip amount ($): ", reader)
 

@@ -54,3 +54,13 @@ func (b *Bill) UpdateTip(t float64) {
 func (b *Bill) AddItem(n string, p float64) {
 	b.Items[n] = p
 }
+
+func (b *Bill) Save() {
+	data := []byte(b.Format())
+
+	err := os.WriteFile("bills/"+b.Name+".txt", data, 0644)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("bill was save to file")
+}
