@@ -1,6 +1,6 @@
 package main
 
-import con "gorepo/concurrency"
+import con "gotour/medley/concurrency"
 
 // import ts "gorepo/typestruct"
 
