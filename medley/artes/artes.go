@@ -70,4 +70,58 @@ func main() {
 	// Copy the values from array2 into array1.
 	array_6_0 = array_6_1
 	fmt.Println("Array_6_0 PONTER after copying", array_6_0)
+
+	fmt.Println("-----Two dimensional-----")
+
+	// Declare a two dimensional integer array of four elements by two elements.
+	var array_d_0 [4][2]int
+	fmt.Println("Array_d_0", array_d_0)
+
+	// Use an array literal to declare and initialize a two  dimensional integer array.
+	array_d_1 := [4][2]int{{10, 11}, {20, 21}, {30, 31}, {40, 41}}
+	fmt.Println("Array_d_1", array_d_1)
+
+	// Declare and initialize index 1 and 3 of the outer array.
+	array_d_2 := [4][2]int{1: {20, 21}, 3: {40, 41}}
+	fmt.Println("Array_d_2", array_d_2)
+
+	// Declare and initialize individual elements of the outer and inner array.
+	array_d_3 := [4][2]int{1: {0: 20}, 3: {1: 41}}
+	fmt.Println("Array_d_3", array_d_3)
+
+	/*
+		Passing an array between functions can be an expensive operation in terms of memory
+		and performance.
+		When you pass variables between functions, they’re always passed by value.
+		When your variable is an array, this means the entire array,
+		regardless of its size, is copied and passed to the function.
+
+		// Declare an array of 8 megabytes.
+		var array [1e6]int
+		// Pass the array to the function foo.
+		foo(array)
+		// Function foo accepts an array of one million integers.
+		func foo(array [1e6]int) {...}
+
+		Every time the function foo is called, eight megabytes of memory has to be allocated
+		on the stack.
+		Then the value of the array, all eight megabytes of memory, has to be
+		copied into that allocation.
+		Go can handle this copy operation, but there’s a better
+		and more efficient way of doing this. You can PASS A POINTER to the array and only copy
+		eight bytes, instead of eight megabytes of memory on the stack.
+		// Allocate an array of 8 megabytes.
+		var array [1e6]int
+		// Pass the address of the array to the function foo.
+		foo(&array)
+		// Function foo accepts a pointer to an array of one million integers.
+		func foo(array *[1e6]int) {...}
+
+		This time the function foo TAKES A POINTER to an array of one million elements of type integer.
+		The function call now PASSES THE ADDRESS of the array, which only requires
+		eight bytes of memory to be allocated on the stack for the pointer variable.
+		This operation is much more efficient with memory and could yield better performance.
+
+	*/
+
 }
