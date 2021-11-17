@@ -55,4 +55,19 @@ func main() {
 	// Copy the values from array2 into array1.
 	array_5_0 = array_5_1
 	fmt.Println("Array_5_0", array_5_0)
+
+	// Declare a string pointer array of three elements.
+	var array_6_0 [3]*string
+	fmt.Println("Array_6_0 PONTER", array_6_0)
+	// Declare a second string pointer array of three elements.
+	// Initialize the array with string pointers.
+	array_6_1 := [3]*string{new(string), new(string), new(string)}
+	fmt.Println("Array_6_1 PONTER", array_6_1)
+	// Add colors to each element
+	*array_6_1[0] = "Red"
+	*array_6_1[1] = "Blue"
+	*array_6_1[2] = "Green"
+	// Copy the values from array2 into array1.
+	array_6_0 = array_6_1
+	fmt.Println("Array_6_0 PONTER after copying", array_6_0)
 }
