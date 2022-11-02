@@ -1,6 +1,7 @@
 package search
 
 import (
+	"fmt"
 	"log"
 	"sync"
 )
@@ -37,13 +38,13 @@ func Run() {
 	// Launch a goroutine to monitor when all the work is done.
 	go func() {
 		// Wait for everything to be processed.
+		fmt.Println("Wait for everything to be processed...")
 		waitGroup.Wait()
 
 		// Close the channel to signal to the Display function that we can exit the program.
 		close(results)
 	}()
 
-	// Start displaying results as they are available and
-	// return after the final result is displayed.
+	// Start displaying results as they are available and return after the final result is displayed.
 	Display(results)
 }

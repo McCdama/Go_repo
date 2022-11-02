@@ -1,17 +1,15 @@
 package search
 
 import (
-	"encoding/json"
+	"bufio"
+	"fmt"
 	"os"
 )
 
-const dataFile = "data/data.json"
+const dataFile = "data/data.txt"
 
-// Feed contains information we need to process a feed.
 type Feed struct {
-	Name string `json:"site"`
-	URI  string `json:"link"`
-	Type string `json:"type"`
+	URI string
 }
 
 // RetrieveFeeds reads and unmarshals the feed data file.
@@ -22,16 +20,28 @@ func RetrieveFeeds() ([]*Feed, error) {
 		return nil, err
 	}
 
-	// Schedule the file to be closed once
-	// the function returns.
+	// Schedule the file to be closed once the function returns.
 	defer file.Close()
 
-	// Decode the file into a slice of pointers
-	// to Feed values.
+	// Decode the file into a slice of pointers to Feed values.
 	var feeds []*Feed
 
-	err = json.NewDecoder(file).Decode(&feeds)
-	//scanner := bufio.NewScanner(file)
+	//err = json.NewDecoder(file).Decode(&feeds)
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		if err := scanner.Err(); err != nil {
+			fmt.Fprintln(os.Stderr, "error reading from file:", err)
+			os.Exit(3)
+		}
+		uri := scanner.Text()
+		if uri != "" {
+			feeds = append(feeds, &Feed{URI: scanner.Text()})
+		}
+
+	}
+	// for _, n := range feeds {
+	// 	fmt.Printf("%s, %+v\n", n.URI, n)
+	// }
 
 	// We don't need to check for errors, the caller can do this.
 	return feeds, err

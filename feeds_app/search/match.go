@@ -21,8 +21,7 @@ type Matcher interface {
 	Search(feed *Feed, searchTerm string) ([]*Result, error)
 }
 
-// Match is launched as a goroutine for each individual feed to run
-// searches concurrently.
+// Match is launched as a goroutine for each individual feed to run searches concurrently.
 func Match(matcher Matcher, feed *Feed, searchTerm string, results chan<- *Result) {
 	// Perform the search against the specified matcher.
 	searchResults, err := matcher.Search(feed, searchTerm)
@@ -37,8 +36,7 @@ func Match(matcher Matcher, feed *Feed, searchTerm string, results chan<- *Resul
 	}
 }
 
-// Display writes results to the console window as they
-// are received by the individual goroutines.
+// Display writes results to the console window as they are received by the individual goroutines.
 func Display(results chan *Result) {
 	// The channel blocks until a result is written to the channel.
 	// Once the channel is closed the for loop terminates.
@@ -53,7 +51,7 @@ func downloadJob(dataFile string) {
 	//fmt.Println("Filename", fileName)
 
 	// Create blank file
-	file, err := os.Create(fmt.Sprintf("%s%s", fileName, ".pdf")) //check later if exists in the url or not
+	file, err := os.Create(fmt.Sprintf("%s%s", fileName, ".pdf")) // check if exists in the url or not
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -74,6 +72,6 @@ func downloadJob(dataFile string) {
 
 	defer file.Close()
 
-	fmt.Printf("Downloaded a file %s with size %d ", fileName, size)
+	fmt.Printf("Downloaded %s with size %d \n", fileName, size)
 
 }
