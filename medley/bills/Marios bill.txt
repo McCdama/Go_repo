@@ -1,8 +1,0 @@
-BILL INFORMATION: 
- 
-toffe pudding:            ...$12.7 
-coffe:                    ...$4.09 
-veg stew:                 ...$6.99 
-
-tip:                     ...$7.00
-total:                   ...$30.78

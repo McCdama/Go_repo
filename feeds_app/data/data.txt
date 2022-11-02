@@ -1,0 +1,5 @@
+https://www.pdfscripting.com/public/FreeStuff/PDFSamples/AcroForm_ToggleButton_Sample.pdf
+https://www.pdfscripting.com/public/FreeStuff/PDFSamples/PDFS_CopyPastListEntries.pdf
+https://www.pdfscripting.com/public/FreeStuff/PDFSamples/JavaScriptClock.pdf
+https://www.pdfscripting.com/public/FreeStuff/PDFSamples/ModifySubmit_Example.pdf
+https://www.pdfscripting.com/public/FreeStuff/PDFSamples/DynamicEmail_XFAForm_V2.pdf

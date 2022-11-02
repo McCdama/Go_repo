@@ -1,8 +1,0 @@
-BILL INFORMATION: 
- 
-Coffe:                    ...$12.5 
-Pie:                      ...$13.4 
-Onion:                    ...$7 
-
-tip:                     ...$0.00
-total:                   ...$32.90

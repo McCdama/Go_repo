@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "gotour/feeds_app/matchers" // Blank identifier, Compiler accept it & call any init functions within that package.
+	//_ "gotour/feeds_app/matchers" // Blank identifier, Compiler accept it & call any init functions within that package.
 	"gotour/feeds_app/search"
 	"log"
 	"os"
@@ -14,5 +14,5 @@ func init() {
 
 // entry point
 func main() {
-	search.Run("fan")
+	search.Run()
 }
